@@ -56,20 +56,21 @@ rank = -1
 max_page = pages_num
 
 if st.sidebar.button("検索"):
-    for page in range(max_page):
-        html = get_search_html(keyword, page)
-        soup = BeautifulSoup(html, 'html.parser')
+    with st.spinner("現在検索中です。少々お待ちください"):
+        for page in range(max_page):
+            html = get_search_html(keyword, page)
+            soup = BeautifulSoup(html, 'html.parser')
 
-        title_text = soup.find('title').get_text()
-        rank = get_page_rank(soup, page)
+            title_text = soup.find('title').get_text()
+            rank = get_page_rank(soup, page)
 
-        page += 1
+            page += 1
+            if rank != -1:
+                break
+            rand = random.randint(3, 7)
+            time.sleep(rand)
+            
         if rank != -1:
-            break
-        rand = random.randint(3, 7)
-        time.sleep(rand)
-        
-    if rank != -1:
-        st.write("順位: {}位".format(rank))
-    else:
-        st.write("見つかりませんでした")
+            st.write("順位: {}位".format(rank))
+        else:
+            st.write("見つかりませんでした")
