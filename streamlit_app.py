@@ -37,7 +37,7 @@ if keyword == "":
 st.sidebar.write("検索ワードは",keyword,"です。")
 
 # 上位から何件までのサイトを抽出するか指定する
-pages_num = st.sidebar.number_input("検索件数を入力してください",value=100)
+pages_num = st.sidebar.number_input("検索件数を入力してください",value=100,max_value=100)
 if pages_num == "" or pages_num == 0:
     st.warning("検索件数を入力してください")
     st.stop()
