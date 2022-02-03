@@ -67,7 +67,7 @@ if st.sidebar.button("検索"):
             page += 1
             if rank != -1:
                 break
-            rand = random.randint(3, 7)
+            rand = random.randint(1, 3)
             time.sleep(rand)
             
         if rank != -1:
